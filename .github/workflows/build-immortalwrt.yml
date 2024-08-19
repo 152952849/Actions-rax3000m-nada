@@ -19,7 +19,7 @@ on:
       USE_NX30PRO_EEPROM:
         description: 'Use nx30pro eeprom'
         required: true
-        default: true
+        default: false
         type: boolean
       USE_52MHZ:
         description: 'Use 52MHz max-frequency'
@@ -82,8 +82,8 @@ jobs:
     - name: 更新 & 安装 feeds & 执行脚本
       run: |
         cd openwrt
-        ./scripts/feeds update -a && ./scripts/feeds install -a        
         chmod +x $GITHUB_WORKSPACE/$DIY_SH && $GITHUB_WORKSPACE/$DIY_SH
+        ./scripts/feeds update -a && ./scripts/feeds install -a
 
     - name: 导入补丁和配置
       run: |
